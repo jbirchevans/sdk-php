@@ -108,7 +108,7 @@ class DomainClient extends BaseClient
      * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteByName($domainName)
+    public function destroy($domainName)
     {
         $response = $this->delete('v1/domains/' . $domainName);
 
