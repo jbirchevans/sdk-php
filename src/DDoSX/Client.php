@@ -3,6 +3,7 @@
 namespace UKFast\SDK\DDoSX;
 
 use UKFast\SDK\Client as BaseClient;
+use UKFast\SDK\DDoSX\Entities\DomainProperty;
 
 class Client extends BaseClient
 {
@@ -19,6 +20,15 @@ class Client extends BaseClient
     public function domains()
     {
         return (new DomainClient($this->httpClient))->auth($this->token);
+    }
+
+    /**
+     * Return the DomainPropertiesClient instance
+     * @return DomainPropertiesClient
+     */
+    public function domainProperties()
+    {
+        return (new DomainPropertiesClient($this->httpClient))->auth($this->token);
     }
 
     /**

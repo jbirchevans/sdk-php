@@ -9,6 +9,8 @@ class ProductClient extends BaseClient
 {
     protected $basePath = 'account';
 
+    const MAP = [];
+
     /**
      * Get a list of products for the specified account
      * @return array
@@ -21,7 +23,15 @@ class ProductClient extends BaseClient
         $body = $this->decodeJson($response->getBody()->getContents());
 
         return array_map(function ($item) {
-            return new Product($item);
+            return $this->serializeData($item);
         }, $body->data);
+    }
+
+    /**
+     * @return Product
+     */
+    public function serializeData($raw)
+    {
+        return new Product($this->apiToFriendly($raw, self::MAP));
     }
 }
