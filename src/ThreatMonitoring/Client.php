@@ -12,11 +12,13 @@ class Client extends BaseClient
 {
     protected $basePath = 'threat-monitoring/';
 
-    /**
-     * @return BaseClient
-     */
     public function alerts()
     {
         return (new AlertClient($this->httpClient))->auth($this->token);
+    }
+
+    public function agents()
+    {
+        return (new AgentClient($this->httpClient))->auth($this->token);
     }
 }
